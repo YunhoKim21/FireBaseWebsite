@@ -1,0 +1,132 @@
+.textWhite{
+      color:#ffffff;
+    }
+    .titleText{
+      text-align: center;
+      font-size: 60pt;
+
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 300;
+    }
+    .midTitleText{
+      text-align: center;
+      font-size: 40pt;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 300;
+    }
+    .plainText{
+      text-align: center;
+      font-size: 20pt;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 300;
+    }
+    /* Style all font awesome icons */
+    .fa {
+      align: center;
+      padding: 20px;
+      font-size: 30px;
+      width: 50px;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    /* Add a hover effect if you want */
+    .fa:hover {
+      opacity: 0.7;
+    }
+
+    /* Set a specific color for each brand */
+
+    /* Facebook */
+    .fa-facebook {
+      background: #3B5998;
+      color: white;
+    }
+
+    .fa-instagram{
+      background: #125688;
+      color: white;
+    }
+    .fa-youtube{
+      background: #bb0000;
+      color:white;
+    }
+    .fa-pinterest{
+      background: #cb2027;
+      color: white;
+    }
+    .fa-github{
+      background: #000000;
+      color:white;
+    }
+    .button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+/* Solid border */
+hr.solid {
+  border-top: 3px solid #bbb;
+}
+/*
+*
+* ==========================================
+* CUSTOM UTIL CLASSES
+* ==========================================
+*
+*/
+.navbar {
+    transition: all 0.4s;
+}
+
+.navbar .nav-link {
+    color: #fff;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+    color: #fff;
+    text-decoration: none;
+}
+
+.navbar .navbar-brand {
+    color: #fff;
+}
+
+
+/* Change navbar styling on scroll */
+.navbar.active {
+    background: #fff;
+    box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar.active .nav-link {
+    color: #555;
+}
+
+.navbar.active .nav-link:hover,
+.navbar.active .nav-link:focus {
+    color: #555;
+    text-decoration: none;
+}
+
+.navbar.active .navbar-brand {
+    color: #555;
+}
+
+
+/* Change navbar styling on small viewports */
+@media (max-width: 991.98px) {
+    .navbar {
+        background: #fff;
+    }
+
+    .navbar .navbar-brand, .navbar .nav-link {
+        color: #555;
+    }
+}

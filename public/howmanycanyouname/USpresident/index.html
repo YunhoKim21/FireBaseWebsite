@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+
+	<title>How Many US presidents can you name?</title>
+
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="../../style.css">
+	<link rel = "stylesheet" href = "style.css">
+</head>
+<body>
+	<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
+
+	<p class = "titleText textWhite"><b>How many US presidents<br/> can you name?</b></p>
+
+  <p class = "midTitleText textWhite" id = "currentnumber">Current : 0/46</p>
+
+
+<p style = "text-align:center;" id = "entrys">
+	<input type="text" name="name" class="question" id="entry" required autocomplete="off" onkeydown="search(this);"/>
+	<label for="entry"><span>Enter president name</span></label>
+	<br/><br/>
+</p>
+
+<p style = "text-align:center;" id = 'buttons'>
+<button class = "button" onclick = "enter();">Enter</button>
+<button class = "button" style = "background-color:#ff0000;" onclick = "end();">I'm done!</button>
+<br/><br/>
+</p>
+
+	<p class = "midTitleText textWhite" style = "display:none;" id = "leaderboardtext">Leader Board</p>
+
+	<table border = '0' class = "plainText center" style = "text-align:left; display:none;" id = "leaderboard">
+		<th>ID</th>
+		<th>pts</th>
+		<th>date</th>
+		<tr>
+			<td>f35jsflove</td>
+			<td>2</td>
+			<td>2021-01-30</td>
+		</tr>
+		<tr>
+			<td>f35jsflove</td>
+			<td>3</td>
+			<td>2021-01-30</td>
+		</tr>
+		<tr>
+			<td>f35jsflove</td>
+			<td>1</td>
+			<td>2021-01-30</td>
+		</tr>
+	</table>
+
+
+	<p class = "plainText"><a href = "https://mywebsite-e2544.firebaseapp.com">Go Back></a></p>
+
+
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-firestore.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-analytics.js"></script>
+
+	<script src = "index.js"></script>
+	<script src = "../../scripts/init.js"></script>
+
+
+<script>
+
+
+</script>
+
+	</body>
+	</html>

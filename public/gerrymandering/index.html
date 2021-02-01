@@ -1,0 +1,158 @@
+<!doctype html>
+<html>
+<head>
+
+	<title>Play Gerrymadering</title>
+	<link rel="stylesheet" href="../style.css">
+</head>
+<body style="background-color : #ff0d7b">
+
+	<!-- links-->
+	<link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Crimson+Text|Work+Sans:400,700" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+	<!-- links-->
+	<link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+
+	<!--Title-->
+	<p class = "titleText textWhite" id = "mainTitle"><b>Play Gerrymadering!</b></p>
+
+
+	<p class = "plainText">
+		Make new Room or enter existing Room : <input type = "text" id = "passwordentry" size = "20pt">
+		<br/><br/><button class = "button" type = "button" onClick = "a();">Go!</button>
+	</p>
+	<script>
+
+		function a() {
+			var passwordentry = document.getElementById("passwordentry");
+			var password = passwordentry.value;
+
+			var ref = firebase.database().ref('webgame/' + password + '/existing');
+			var isExisting = false;
+			ref.once("value").then((snapshot) => {
+				isExisting = snapshot.val();
+				if (isExisting) {
+					var changeref = firebase.database().ref('webgame/' + password + '/started');
+					var boardref = firebase.database().ref('webgame/' + password + '/board');
+					changeref.set(true);
+
+					var boardsize = 10;
+					var board = new Array(boardsize);
+					for (var i = 0; i < boardsize; i++) {
+						board[i] = new Array(boardsize);
+					}
+					for(var i = 0; i < boardsize; i++) {
+						for(var j = 0; j < boardsize; j++) {
+							board[i][j] = 0; //reps
+						}
+					}
+
+					var requirednumber = parseInt(boardsize*boardsize/2);
+					var currentnumber = 0;
+					var selected = Array();
+					while(currentnumber<requirednumber) {
+						var pick = Math.floor(Math.random()*boardsize*boardsize);
+
+						var isin = false;
+						for(i=0 ; i<selected.length ; i++) {
+							if(selected[i]==pick){
+								isin = true;
+							}
+						}
+						if (!isin){
+							selected[currentnumber] = pick;
+							currentnumber++;
+						}
+					}
+
+					for(i=0;i<selected.length; i++){
+						board[parseInt(selected[i]/boardsize)][selected[i]%boardsize] = 1;
+					}
+
+					boardref.set(board);
+					window.location.href = 'play/index.html#side=Rep&pw='+password;
+					return false;
+				}
+				else{
+					data = {'ended': false ,
+					'password': password,
+					'started': false,
+					'existing': true,
+					'board':false,
+					'repscore':0,
+					'demscore':0,
+					'turn':'Rep'};
+					firebase.database().ref('webgame/'+password).set(data);
+					alert('your room password is '+password+'. Please wait...');
+					var listenerref = firebase.database().ref('webgame/'+password+'/started');
+
+					listenerref.on('value', (snapshot) => {
+						if (snapshot.val() == true){
+							window.location.href = 'play/index.html#side=Dem&pw='+password;
+							return false;
+						}
+					})
+				}
+			});
+		}
+	</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<p class = "plainText"><a href = "https://mywebsite-e2544.firebaseapp.com">Go Back></a></p>
+
+
+
+	<!-- firebase stuff -->
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-database.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+	https://firebase.google.com/docs/web/setup#available-libraries -->
+	<script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-analytics.js"></script>
+
+	<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+  	apiKey: "AIzaSyCCTyHQ0fjdru9_gMK5BLI7dycntw-3D_o",
+  	authDomain: "gerrymandering-296813.firebaseapp.com",
+  	databaseURL: "https://gerrymandering-296813.firebaseio.com",
+  	projectId: "gerrymandering-296813",
+  	storageBucket: "gerrymandering-296813.appspot.com",
+  	messagingSenderId: "727638904558",
+  	appId: "1:727638904558:web:d39a4e5fd34db3f1afadff",
+  	measurementId: "G-RMGMM2ZEDX"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+
+
+</script>
+
+<script src="../scripts/auth.js"></script>
+<script src="../scripts/index.js"></script>
+<script src = "../scripts/init.js"></script>
+</body>
+</html>
